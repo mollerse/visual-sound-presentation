@@ -328,7 +328,6 @@ async function start(canvas, controls, audioContext, canvasSlide) {
   initControls(controls);
   initCanvas(canvas);
   initAudio(audioContext, audioSource);
-  render();
 }
 
 /** @type {StopFn} */
