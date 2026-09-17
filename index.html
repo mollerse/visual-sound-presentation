@@ -12,135 +12,448 @@
       rel="icon"
       type="image/x-icon"
     />
-    <title>visual-sound-presentation</title>
+    <title>Visual Sound</title>
 
     <style>
       @import url("/node_modules/reveal.js/dist/reveal.css");
-@import url("/node_modules/reveal.js/dist/theme/night.css");
-/* Highlight.js styling */
-@import url("/lib/darcula.css");
+      @import url("/node_modules/reveal.js/dist/theme/night.css");
+      /* Highlight.js styling */
+      @import url("/lib/darcula.css");
 
-* {
-  box-sizing: border-box;
-}
+      * {
+        box-sizing: border-box;
+      }
 
-body {
-  aspect-ratio: 16/9;
-}
+      body {
+        width: 100vw !important;
+        height: calc((9 / 16) * 100vw) !important;
+      }
 
-/* Reveal.js styles */
-:root {
-  --background-color: #050505;
-  --main-color: #ebebeb;
-  --accent-color: hotpink;
-  --main-font: "DejaVu Sans", Helvetica, sans-serif;
-  --font-weight: 300;
-  --font-size: 3em;
-  --r-main-font-size: var(--font-size);
-  --r-background-color: var(--background-color);
-  --r-main-font: var(--main-font);
-  --r-main-color: var(--main-color);
-  --r-heading-font: var(--main-font);
-  --r-heading-color: var(--main-color);
-  --r-heading-font-weight: var(--font-weight);
-  --r-link-color: var(--accent-color);
-  --r-link-color-hover: var(--accent-color);
-  --r-heading-text-transform: uppercase;
-}
+      /* Landscape */
+      @media (min-aspect-ratio: 16/9) {
+        body {
+          height: 100vh !important;
+          width: calc((16 / 9) * 100vh) !important;
+        }
+      }
 
-p {
-  font-weight: var(--font-weight);
-}
+      /* Reveal.js styles */
+      :root {
+        --background-color: #050505;
+        --main-color: #ebebeb;
+        --accent-color: hotpink;
+        --main-font: "DejaVu Sans", Helvetica, sans-serif;
+        --font-weight: 300;
+        --font-size: calc(var(--scale, 1) * 3em);
+        --r-main-font-size: var(--font-size);
+        --r-background-color: var(--background-color);
+        --r-main-font: var(--main-font);
+        --r-main-color: var(--main-color);
+        --r-heading-font: var(--main-font);
+        --r-heading-color: var(--main-color);
+        --r-heading-font-weight: var(--font-weight);
+        --r-link-color: var(--accent-color);
+        --r-link-color-hover: var(--accent-color);
+        --r-heading-text-transform: uppercase;
+      }
 
-/* Other styles */
+      ::selection {
+        background: hotpink !important;
+        color: black !important;
+        text-shadow: none !important;
+      }
 
-.slides>section {
-  height: 100%;
-  width: 100%;
-  padding: 2.5%;
-}
+      p {
+        font-weight: var(--font-weight);
+        margin: 0 0 1em !important;
+      }
 
-.center {
-  flex-direction: column;
-  justify-content: center;
-}
+      p:last-child {
+        margin-bottom: 0 !important;
+      }
 
-.center p {
-  margin: 0;
-  line-height: 1.5;
-}
+      /* Other styles */
 
-.center .small {
-  font-size: 75%;
-}
+      .slides > section {
+        height: 100%;
+        width: 100%;
+        padding: 2.5%;
+      }
 
-.standard {
-  flex-direction: column;
-  justify-content: left;
-  text-align: left;
-}
+      .center {
+        flex-direction: column;
+        justify-content: center;
+      }
 
-.standard h2 {}
+      .center p {
+        line-height: 1.5;
+      }
 
-.standard>div {
-  flex-grow: 1;
-  padding: 2.5%;
-  padding-top: 0;
-}
+      .center .small {
+        font-size: 50%;
+      }
 
-.standard p {
-  margin: 1em 0;
-  max-width: 80%;
-}
+      .center h1 {
+        margin-bottom: 0;
+      }
 
-.standard sup {
-  font-size: 50%;
-}
+      .center .stand-alone {
+        width: 75%;
+        font-size: 125%;
+        margin: 0 auto;
+      }
 
-.standard p.small {
-  font-size: 50%;
-}
+      .center .subtitle {
+        margin-bottom: 20px;
+      }
 
-.standard p.smaller {
-  font-size: 35%;
-}
+      .standard {
+        flex-direction: column;
+        justify-content: left;
+        text-align: left;
+      }
 
-.standard pre {
-  width: 100% !important;
-}
+      .standard h2 {
+        margin-bottom: 1em;
+      }
 
-.standard p:has(+ pre) {
-  position: absolute;
-  font-family: var(--r-code-font);
-  right: 5.5%;
-  margin: 0;
-  z-index: 1;
-}
+      .standard > div {
+        flex-grow: 1;
+        padding: 2.5%;
+        padding-top: 0;
+      }
 
-.standard p+pre {
-  margin-top: 0;
-}
+      .standard p {
+        max-width: 80%;
+      }
 
-.standard pre code {
-  max-height: none;
-}
+      .standard sup {
+        font-size: 50%;
+      }
 
-.standard .no-margin-bottom {
-  margin-bottom: 0 !important;
-}
+      .standard p.small {
+        font-size: 50%;
+      }
+
+      .standard p.smaller {
+        font-size: 35%;
+      }
+
+      .center p.stand-alone {
+        max-width: 60%;
+      }
+
+      .standard pre {
+        width: 100% !important;
+      }
+
+      .standard p:has(+ pre) {
+        position: absolute;
+        font-family: var(--r-code-font);
+        right: 5.5%;
+        margin: 0;
+        z-index: 1;
+      }
+
+      .standard p + pre {
+        margin-top: 0;
+      }
+
+      .standard pre code {
+        max-height: none;
+      }
+
+      .standard .no-margin-bottom {
+        margin-bottom: 0 !important;
+      }
+
+      .standard .no-margin {
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
+      }
+
+      .standard img.center {
+        margin: 0 auto;
+        display: block;
+        width: min(350px, 25vw);
+      }
+
+      .center blockquote {
+        background: none;
+        box-shadow: none;
+        text-align: left;
+      }
+
+      .center blockquote + p {
+        width: 70%;
+        text-align: left;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      .gallery {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .gallery figure {
+        aspect-ratio: 16/9;
+        width: auto;
+        height: calc(50% - 0.5em);
+        margin: 0.5em 0;
+        display: block;
+      }
+
+      .gallery img {
+        margin: 0;
+        width: 100%;
+        display: block;
+      }
+
+      .gallery figcaption {
+        display: block;
+        font-size: 0.5em;
+        margin: 0;
+        width: 100%;
+      }
+
+      .demo canvas-slide,
+      .demo canvas {
+        width: 100%;
+      }
+
+      .tp-dfwv {
+        z-index: 1 !important;
+        display: none;
+      }
+
+      body.demo {
+        .tp-dfwv {
+          display: block;
+        }
+      }
     </style>
   </head>
+
   <body>
     <div class="reveal">
       <div class="slides">
-        <!-- Intro -->
         <section class="center">
-          <h1>visual-sound-presentation</h1>
+          <h1>Visualising Sound</h1>
           <p class="small">Stian Veum Møllersen / @mollerse</p>
-          <p class="small">at</p>
+          <p class="small">at NDC 2026</p>
+        </section>
+        <section class="center">
+          <p>What is sound?</p>
+        </section>
+        <section class="standard">
+          <h2>Sound is mechanical</h2>
+          <p>It's an actual physical phenomenon.</p>
+          <p class="fragment">Waves of pressure passing through some kind of elastic material.</p>
+        </section>
+        <section class="standard">
+          <h2>Sound is data</h2>
+          <p>Because it is a physical phenomenon, we can model it.</p>
+          <p class="fragment">We've got good models for things that behave like waves.</p>
+          <p class="fragment">Sinusoids.</p>
+        </section>
+        <section class="demo">
+          <canvas-slide data-demo="sinusoids"></canvas-slide>
+        </section>
+        <section class="standard">
+          <h2>Sound is data</h2>
+          <p>Sinusoids can be combined to create more complex waves.</p>
+        </section>
+        <section class="demo">
+          <canvas-slide data-demo="sinusoids"></canvas-slide>
+        </section>
+        <section class="standard">
+          <h2>Sound is data</h2>
+          <p>If sound can be combined, can it be un-combined?</p>
+          <p class="fragment">Can the paint be un-mixed?</p>
+        </section>
+        <section class="center">
+          <p>Fourier Analysis</p>
+        </section>
+        <section class="demo">
+          <canvas-slide data-demo="fft"></canvas-slide>
+        </section>
+        <section class="standard">
+          <h2>Sound of music</h2>
+          <p>The hills are alive!</p>
+          <p class="fragment">No, but really.</p>
+        </section>
+        <section class="demo">
+          <canvas-slide data-demo="music-fft" data-src="popcorn"></canvas-slide>
+        </section>
+        <section class="standard">
+          <h2>Web Audio API</h2>
+          <pre><code data-line-numbers="1-17|1-1|2-2|4-6|8-9|11-12|14-14|16-17|1-17" data-trim data-noescape data-line-numbers class="language-js">
+            const audioContext = new AudioContext();
+            const FFT_SIZE = Math.pow(2,9)
+
+            let audio = new Audio("song.mp3");
+            audio.crossOrigin = "anonymous";
+            let source = audioContext.createMediaElementSource(audio);
+
+            let analyser = audioContext.createAnalyser();
+            analyser.fftSize = FFT_SIZE;
+
+            source.connect(analyser);
+            analyser.connect(audioContext.destination);
+
+            audio.play();
+
+            let frequencyData = new Uint8Array(analyser.frequencyBinCount);
+            analyser.getByteFrequencyData(frequencyData);
+          </code></pre>
+        </section>
+        <section class="center">
+          <p>So we have a bunch of data.</p>
+          <p class="fragment">Now what?</p>
+        </section>
+        <section class="standard">
+          <h2>Extracting features</h2>
+          <p>We can apply data science to the problem.</p>
+          <p class="fragment">For instance spectrograms of songs:</p>
+        </section>
+        <section class="demo">
+          <canvas-slide data-demo="spectrogram" data-src="popcorn"></canvas-slide>
+        </section>
+        <section class="demo">
+          <canvas-slide data-demo="spectrogram" data-src="traces"></canvas-slide>
+        </section>
+        <section class="demo">
+          <canvas-slide data-demo="spectrogram" data-src="no-more-lies"></canvas-slide>
+        </section>
+        <section class="demo">
+          <canvas-slide data-demo="spectrogram" data-src="mister-game"></canvas-slide>
+        </section>
+        <section class="center">
+          <div class="gallery">
+            <figure>
+              <img src="assets/popcorn.png" alt="Spectrogram of Popcorn by Hot Butter" />
+            </figure>
+            <figure>
+              <img src="assets/traces.png" alt="Spectrogram of Flesh by A Split-Second" />
+            </figure>
+            <figure>
+              <img src="assets/no-more-lies.png" alt="Spectrogram of Traces of Reality by DHG" />
+            </figure>
+            <figure>
+              <img src="assets/mister-game.png" alt="Spectrogram of No More Lies by NIKOLINA" />
+            </figure>
+          </div>
+        </section>
+        <section class="standard">
+          <h2>Extracting features</h2>
+          <p>Songs are so very different, but there are similarities.</p>
+          <p class="fragment">
+            Features can be extracted and used to tell us something interesting about a song or
+            compare it to other songs.
+          </p>
+        </section>
+        <section class="standard">
+          <h2>Extracting features</h2>
+          <p>Chosing the kind of feature, or the parameters of the feature matters a lot.</p>
+          <p class="fragment">
+            For instance, would you want to detect parts with high energy or the parts with silence?
+          </p>
+        </section>
+        <section class="standard">
+          <h2>Extracting features</h2>
+          <p>There are so many things we could want to know about a piece of music.</p>
+          <img
+            class="fragment"
+            width="50%"
+            style="aspect-ratio: 4/3"
+            src="assets/musimathics.jpg"
+            alt="A picture of Gareth Loy's Musimathics vol. 1 and 2."
+          />
+        </section>
+        <section class="standard">
+          <h2>Extracting features</h2>
+          <p>
+            The nice thing about something that's been studied extensively, is that there's usually
+            available implementations of the best approaches.
+          </p>
+          <p class="fragment">
+            <code>meyda.js</code> is an audio feature extraction library for JavaScript.
+            <a href="https://meyda.js.org/">https://meyda.js.org/</a>
+          </p>
+        </section>
+        <section class="standard">
+          <h2>Meyda.js</h2>
+          <pre><code data-line-numbers="1-22|1-1|3-5|7-16|7-7|8-16|9-9|10-10|11-11|12-12|13-15|18-19|21-22|1-22" data-trim data-noescape data-line-numbers class="language-js">
+            import Meyda from "meyda";
+
+            /*
+             * Audio-setup exactly like before, with analyzer-node.
+             */
+
+            let energy = 0;
+            let meydaAnalyzer = Meyda.createMeydaAnalyzer({
+              audioContext,
+              source,
+              bufferSize: FFT_SIZE,
+              featureExtractors: ["rms"],
+              callback: (features) => {
+                energy = features.rms || 0;
+              },
+            });
+
+            audio.play();
+            meydaAnalyzer.start();
+
+            let frequencyData = new Uint8Array(analyser.frequencyBinCount);
+            analyser.getByteFrequencyData(frequencyData);
+          </code></pre>
+        </section>
+        <section class="demo">
+          <canvas-slide data-demo="beat" data-src="mister-game-extended"></canvas-slide>
+        </section>
+        <section class="standard">
+          <h2>Reading</h2>
+          <p>
+            <a href="http://www.musimathics.com/"> Musimathics vol. 1 and 2 by Gareth Loy </a>
+          </p>
+          <p>
+            <a href="https://meyda.js.org/"> meyda.js.org </a>
+            and
+            <a href="https://wac.ircam.fr/pdf/wac15_submission_17.pdf">a paper about meyda</a>.
+          </p>
+          <p>
+            <a href="https://www.lorismat.com/blog/music-experiments/">
+              «Soundscapes: Creating Visuals with Meyda+Shaders» by Loris Mat
+            </a>
+          </p>
+          <p>
+            <a href="https://www.visualcinnamon.com/2020/06/sony-music-data-art/">
+              «Data art posters about music (streaming) data for Sony Music» by Nadieh Bremer
+            </a>
+          </p>
+        </section>
+        <section class="center">
+          <h2>Fin.</h2>
+          <div>
+            <p>Thanks for listening!</p>
+            <br />
+            <p class="small">Stian Veum Møllersen / @mollerse</p>
+            <p class="small">
+              slides:
+              <a href="https://github.com/mollerse/visual-sound-presentation">
+                github/mollerse/visual-sound-presentation
+              </a>
+            </p>
+          </div>
         </section>
       </div>
     </div>
-    <script type="module" src="index.js" charset="utf-8"></script>
+    <script type="module" src="index.js"></script>
   </body>
 </html>
