@@ -18,4 +18,4 @@ npm start
 
 ## View online
 
-Most recent version: [NDC 2026[EN]](https://mollerse.github.io/fun-in-age-of-ai-presentation/dist/ndc2026/index.html)
+Most recent version: [NDC 2026[EN]](https://mollerse.github.io/visual-sound-presentation/dist/ndc2026/index.html)
